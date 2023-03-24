@@ -1,0 +1,7 @@
+syntax = "proto3";
+package slabone.slabone;
+
+option go_package = "slabone/x/slabone/types";
+
+// Msg defines the Msg service.
+service Msg {}

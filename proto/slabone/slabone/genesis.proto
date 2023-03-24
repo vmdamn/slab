@@ -1,0 +1,12 @@
+syntax = "proto3";
+package slabone.slabone;
+
+import "gogoproto/gogo.proto";
+import "slabone/slabone/params.proto";
+
+option go_package = "slabone/x/slabone/types";
+
+// GenesisState defines the slabone module's genesis state.
+message GenesisState {
+  Params params = 1 [(gogoproto.nullable) = false];
+}
