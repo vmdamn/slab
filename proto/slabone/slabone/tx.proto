@@ -6,7 +6,8 @@ option go_package = "slabone/x/slabone/types";
 
 // Msg defines the Msg service.
 service Msg {
-  rpc CreateSlab (MsgCreateSlab) returns (MsgCreateSlabResponse);
+  rpc CreateSlab  (MsgCreateSlab ) returns (MsgCreateSlabResponse );
+  rpc InspectSlab (MsgInspectSlab) returns (MsgInspectSlabResponse);
 }
 message MsgCreateSlab {
   string creator            = 1;
@@ -19,4 +20,14 @@ message MsgCreateSlab {
 message MsgCreateSlabResponse {
   uint64 id = 1;
 }
+
+message MsgInspectSlab {
+  string creator        = 1;
+  string vetterSocialId = 2;
+  string vettingNote    = 3;
+  string uriVetter      = 4;
+  uint64 id             = 5;
+}
+
+message MsgInspectSlabResponse {}
 
