@@ -10,6 +10,7 @@ import (
 func RegisterCodec(cdc *codec.LegacyAmino) {
 	cdc.RegisterConcrete(&MsgCreateSlab{}, "slabone/CreateSlab", nil)
 	cdc.RegisterConcrete(&MsgInspectSlab{}, "slabone/InspectSlab", nil)
+	cdc.RegisterConcrete(&MsgRevokeSlab{}, "slabone/RevokeSlab", nil)
 	// this line is used by starport scaffolding # 2
 }
 
@@ -19,6 +20,9 @@ func RegisterInterfaces(registry cdctypes.InterfaceRegistry) {
 	)
 	registry.RegisterImplementations((*sdk.Msg)(nil),
 		&MsgInspectSlab{},
+	)
+	registry.RegisterImplementations((*sdk.Msg)(nil),
+		&MsgRevokeSlab{},
 	)
 	// this line is used by starport scaffolding # 3
 

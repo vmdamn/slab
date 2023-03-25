@@ -8,6 +8,7 @@ option go_package = "slabone/x/slabone/types";
 service Msg {
   rpc CreateSlab  (MsgCreateSlab ) returns (MsgCreateSlabResponse );
   rpc InspectSlab (MsgInspectSlab) returns (MsgInspectSlabResponse);
+  rpc RevokeSlab  (MsgRevokeSlab ) returns (MsgRevokeSlabResponse );
 }
 message MsgCreateSlab {
   string creator            = 1;
@@ -30,4 +31,14 @@ message MsgInspectSlab {
 }
 
 message MsgInspectSlabResponse {}
+
+message MsgRevokeSlab {
+  string creator         = 1;
+  string revokerSocialId = 2;
+  string revokingNote    = 3;
+  string uriRevoker      = 4;
+  uint64 id              = 5;
+}
+
+message MsgRevokeSlabResponse {}
 

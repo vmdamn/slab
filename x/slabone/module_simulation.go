@@ -32,6 +32,10 @@ const (
 	// TODO: Determine the simulation weight value
 	defaultWeightMsgInspectSlab int = 100
 
+	opWeightMsgRevokeSlab = "op_weight_msg_revoke_slab"
+	// TODO: Determine the simulation weight value
+	defaultWeightMsgRevokeSlab int = 100
+
 	// this line is used by starport scaffolding # simapp/module/const
 )
 
@@ -86,6 +90,17 @@ func (am AppModule) WeightedOperations(simState module.SimulationState) []simtyp
 	operations = append(operations, simulation.NewWeightedOperation(
 		weightMsgInspectSlab,
 		slabonesimulation.SimulateMsgInspectSlab(am.accountKeeper, am.bankKeeper, am.keeper),
+	))
+
+	var weightMsgRevokeSlab int
+	simState.AppParams.GetOrGenerate(simState.Cdc, opWeightMsgRevokeSlab, &weightMsgRevokeSlab, nil,
+		func(_ *rand.Rand) {
+			weightMsgRevokeSlab = defaultWeightMsgRevokeSlab
+		},
+	)
+	operations = append(operations, simulation.NewWeightedOperation(
+		weightMsgRevokeSlab,
+		slabonesimulation.SimulateMsgRevokeSlab(am.accountKeeper, am.bankKeeper, am.keeper),
 	))
 
 	// this line is used by starport scaffolding # simapp/module/operation

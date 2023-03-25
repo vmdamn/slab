@@ -71686,6 +71686,8 @@ definitions:
         format: uint64
   slabone.slabone.MsgInspectSlabResponse:
     type: object
+  slabone.slabone.MsgRevokeSlabResponse:
+    type: object
   slabone.slabone.Params:
     type: object
     description: Params defines the parameters for the module.
