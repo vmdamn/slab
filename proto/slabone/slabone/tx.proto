@@ -1,7 +1,22 @@
 syntax = "proto3";
+
 package slabone.slabone;
 
 option go_package = "slabone/x/slabone/types";
 
 // Msg defines the Msg service.
-service Msg {}
+service Msg {
+  rpc CreateSlab (MsgCreateSlab) returns (MsgCreateSlabResponse);
+}
+message MsgCreateSlab {
+  string creator            = 1;
+  string originatorSocialId = 2;
+  string directedTowards    = 3;
+  string assertion          = 4;
+  string uriOriginator      = 5;
+}
+
+message MsgCreateSlabResponse {
+  uint64 id = 1;
+}
+
