@@ -1,26 +1,58 @@
 syntax = "proto3";
+
 package slabone.slabone;
 
 import "gogoproto/gogo.proto";
 import "google/api/annotations.proto";
 import "cosmos/base/query/v1beta1/pagination.proto";
 import "slabone/slabone/params.proto";
+import "slabone/slabone/slab.proto";
 
 option go_package = "slabone/x/slabone/types";
 
 // Query defines the gRPC querier service.
 service Query {
+  
   // Parameters queries the parameters of the module.
-  rpc Params(QueryParamsRequest) returns (QueryParamsResponse) {
+  rpc Params (QueryParamsRequest) returns (QueryParamsResponse) {
     option (google.api.http).get = "/slabone/slabone/params";
+  
+  }
+  
+  // Queries a list of Slab items.
+  rpc Slab    (QueryGetSlabRequest) returns (QueryGetSlabResponse) {
+    option (google.api.http).get = "/slabone/slabone/slab/{id}";
+  
+  }
+  rpc SlabAll (QueryAllSlabRequest) returns (QueryAllSlabResponse) {
+    option (google.api.http).get = "/slabone/slabone/slab";
+  
   }
 }
-
 // QueryParamsRequest is request type for the Query/Params RPC method.
 message QueryParamsRequest {}
 
 // QueryParamsResponse is response type for the Query/Params RPC method.
 message QueryParamsResponse {
+  
   // params holds all the parameters of this module.
   Params params = 1 [(gogoproto.nullable) = false];
 }
+
+message QueryGetSlabRequest {
+  uint64 id = 1;
+}
+
+message QueryGetSlabResponse {
+  Slab Slab = 1 [(gogoproto.nullable) = false];
+}
+
+message QueryAllSlabRequest {
+  cosmos.base.query.v1beta1.PageRequest pagination = 1;
+}
+
+message QueryAllSlabResponse {
+  repeated Slab                                   Slab       = 1 [(gogoproto.nullable) = false];
+           cosmos.base.query.v1beta1.PageResponse pagination = 2;
+}
+

@@ -1,0 +1,29 @@
+syntax = "proto3";
+package slabone.slabone;
+
+option go_package = "slabone/x/slabone/types";
+
+message Slab {
+  uint64 id = 1;
+  string directedTowards = 2; 
+  string assertion = 3; 
+  string uriOriginator = 4; 
+  string state = 5; 
+  string originatorSocialId = 6; 
+  string originatorChainAddr = 7; 
+  string originatedCtxHeight = 8; 
+  string originatedCtxTime = 9; 
+  string vetterSocialId = 10; 
+  string vetterChainAddr = 11; 
+  string vettingCtxHeight = 12; 
+  string vettingCtxTime = 13; 
+  string vettingNote = 14; 
+  string uriVetter = 15; 
+  string revokerSocialId = 16; 
+  string revokerChainAddr = 17; 
+  string revokingCtxHeight = 18; 
+  string revokingCtxTime = 19; 
+  string revokingNote = 20; 
+  string uriRevoker = 21; 
+  
+}
